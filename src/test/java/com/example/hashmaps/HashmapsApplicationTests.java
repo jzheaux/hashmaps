@@ -75,17 +75,45 @@ class HashmapsApplicationTests {
             if (!(obj instanceof CompositeKey that)) {
                 return false;
             }
+            // return equalsIdeaOne(that);
+            /*
+             * Below is what I would imagine a normal equals method to be like.
+             * This also does not make the tests pass, but I'm including it to demonstrate a secondary concern
+             * that using an unconventional equals should be a code smell.
+             */
+            return equalsIdeaTwo(that);
+        }
+
+        private boolean equalsIdeaOne(CompositeKey that) {
             if (that.sessionId == null) {
                 return this.subject.equals(that.subject);
             }
             return this.sessionId.equals(that.sessionId) && this.subject.equals(that.subject);
         }
 
+        private boolean equalsIdeaTwo(CompositeKey that) {
+            return Objects.equals(that.sessionId, this.sessionId) && Objects.equals(that.subject, this.subject);
+        }
+
         @Override
         public int hashCode() {
+            // return hashCodeIdeaOne();
+            /**
+             * Below is what I would imagine a normal hashCode method to be like.
+             * This also does not make the tests pass, but I'm including it to demonstrate a secondary concern
+             * that using an unconventional equals should be a code smell.
+             */
+            return hashCodeIdeaTwo();
+        }
+
+        private int hashCodeIdeaOne() {
             if (this.sessionId == null) {
                 return Objects.hash(this.subject);
             }
+            return Objects.hash(this.sessionId, this.subject);
+        }
+
+        private int hashCodeIdeaTwo() {
             return Objects.hash(this.sessionId, this.subject);
         }
     }
