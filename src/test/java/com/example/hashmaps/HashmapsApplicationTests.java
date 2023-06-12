@@ -75,13 +75,13 @@ class HashmapsApplicationTests {
             if (!(obj instanceof CompositeKey that)) {
                 return false;
             }
-            // return equalsIdeaOne(that);
+            return equalsIdeaOne(that);
             /*
              * Below is what I would imagine a normal equals method to be like.
              * This also does not make the tests pass, but I'm including it to demonstrate a secondary concern
              * that using an unconventional equals should be a code smell.
              */
-            return equalsIdeaTwo(that);
+            // return equalsIdeaTwo(that);
         }
 
         private boolean equalsIdeaOne(CompositeKey that) {
@@ -97,13 +97,13 @@ class HashmapsApplicationTests {
 
         @Override
         public int hashCode() {
-            // return hashCodeIdeaOne();
+             return hashCodeIdeaOne();
             /**
              * Below is what I would imagine a normal hashCode method to be like.
              * This also does not make the tests pass, but I'm including it to demonstrate a secondary concern
              * that using an unconventional equals should be a code smell.
              */
-            return hashCodeIdeaTwo();
+            //return hashCodeIdeaTwo();
         }
 
         private int hashCodeIdeaOne() {
